@@ -83,6 +83,23 @@ Option C — Add upstream as a submodule in this repo (keeps upstream link):
   git push
   ```
 
+## Submodules — automated helper script
+
+I added a helper script `add-submodules.sh` to this repository that you can run locally or in a Codespace to add and initialize the five submodules automatically.
+
+Usage (local):
+
+```bash
+chmod +x add-submodules.sh
+./add-submodules.sh
+# then commit the .gitmodules and submodule pointers
+git add .gitmodules external/*
+git commit -m "Add lottery projects as submodules"
+git push
+```
+
+This script only prepares the submodule pointers locally. Because adding submodules modifies Git metadata (the gitlinks), you must run the script in your local clone and push the commit that the script creates. Alternatively you can manually run the git submodule commands shown above.
+
 ## License & redistribution note
 - I created this collection README; the included upstream projects keep their own licenses. Before copying upstream source into this repository or redistributing, please confirm each upstream project's LICENSE file or contact the authors. If you want, I can help check each repo for a LICENSE file and list which are safe to copy (MIT/Apache/GPL) and which require confirmation.
 
