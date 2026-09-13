@@ -1,0 +1,20 @@
+  - name: Set git identity
+    run: |
+      git config user.name "github-actions[bot]"
+      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+  - name: Make helper script executable
+    run: chmod +x ./add-submodules.sh
+
+  - name: Run add-submodules script
+    run: ./add-submodules.sh
+
+  - name: Commit and push submodule pointers
+    run: |
+      git add .gitmodules external/* || true
+      if git diff --staged --quiet; then
+        echo "No submodule changes to commit"
+      else
+        git commit -m "Add lottery projects as submodules (automated)"
+        git push origin HEAD:main
+      fi
